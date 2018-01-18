@@ -104,7 +104,6 @@ int test_press( long count )
 		printf( "创建press日志句柄成功\n" );
 	}
 	
-	/* SetLogOptions( press , LOG_OPTION_OPEN_ONCE ); */
 	SetLogOutput( press , LOG_OUTPUT_FILE , "test_press.log" , LOG_NO_OUTPUTFUNC );
 	SetLogLevel( press , LOG_LEVEL_INFO );
 	SetLogStyles( press , LOG_STYLES_PRESS , LOG_NO_STYLEFUNC );
