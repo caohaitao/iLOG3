@@ -1472,6 +1472,21 @@ int WriteLog( LOG *g , char *c_filename , long c_fileline , int log_level , char
 	return 0;
 }
 
+int WriteLog_ex(LOG *_g_, char *c_filename, long c_fileline, int _log_level_, char *format, va_list  valist)
+{
+        int		nret;
+        if ((_g_) == NULL)
+                return LOG_RETURN_ERROR_PARAMETER;
+        if ((_g_)->output == LOG_OUTPUT_FILE && (_g_)->log_pathfilename[0] == '\0')
+                return 0;
+        if (TEST_LOGLEVEL_NOTENOUGH(_log_level_, (_g_)))
+                return 0;
+        nret = WriteLogBase((_g_), c_filename, c_fileline, _log_level_, format, valist);
+        if (nret < 0)
+                return nret;
+        return 0;
+}
+
 #if ( defined _WIN32 ) || ( defined __linux__ ) || ( defined _AIX ) || ( defined __hpux )
 int WriteLogG( char *c_filename , long c_fileline , int log_level , char *format , ... )
 {
@@ -1485,6 +1500,21 @@ int DebugLog( LOG *g , char *c_filename , long c_fileline , char *format , ... )
 {
 	WRITELOGBASE( g , LOG_LEVEL_DEBUG )
 	return 0;
+}
+
+int DebugLog_ex(LOG *_g_, char *c_filename, long c_fileline, char *format, va_list  valist)
+{
+        int		nret;
+        if ((_g_) == NULL)
+                return LOG_RETURN_ERROR_PARAMETER;
+        if ((_g_)->output == LOG_OUTPUT_FILE && (_g_)->log_pathfilename[0] == '\0')
+                return 0;
+        if (TEST_LOGLEVEL_NOTENOUGH(LOG_LEVEL_DEBUG, (_g_)))
+                return 0;
+        nret = WriteLogBase((_g_), c_filename, c_fileline, LOG_LEVEL_DEBUG, format, valist);
+        if (nret < 0)
+                return nret;
+        return 0;
 }
 
 #if ( defined _WIN32 ) || ( defined __linux__ ) || ( defined _AIX ) || ( defined __hpux )
@@ -1502,6 +1532,21 @@ int InfoLog( LOG *g , char *c_filename , long c_fileline , char *format , ... )
 	return 0;
 }
 
+int InfoLog_ex(LOG *_g_, char *c_filename, long c_fileline, char *format, va_list  valist)
+{
+        int		nret;
+        if ((_g_) == NULL)
+                return LOG_RETURN_ERROR_PARAMETER;
+        if ((_g_)->output == LOG_OUTPUT_FILE && (_g_)->log_pathfilename[0] == '\0')
+                return 0;
+        if (TEST_LOGLEVEL_NOTENOUGH(LOG_LEVEL_INFO, (_g_)))
+                return 0;
+        nret = WriteLogBase((_g_), c_filename, c_fileline, LOG_LEVEL_INFO, format, valist);
+        if (nret < 0)
+                return nret;
+        return 0;
+}
+
 #if ( defined _WIN32 ) || ( defined __linux__ ) || ( defined _AIX ) || ( defined __hpux )
 int InfoLogG( char *c_filename , long c_fileline , char *format , ... )
 {
@@ -1515,6 +1560,21 @@ int WarnLog( LOG *g , char *c_filename , long c_fileline , char *format , ... )
 {
 	WRITELOGBASE( g , LOG_LEVEL_WARN )
 	return 0;
+}
+
+int WarnLog_ex(LOG *_g_, char *c_filename, long c_fileline, char *format, va_list  valist)
+{
+        int		nret;
+        if ((_g_) == NULL)
+                return LOG_RETURN_ERROR_PARAMETER;
+        if ((_g_)->output == LOG_OUTPUT_FILE && (_g_)->log_pathfilename[0] == '\0')
+                return 0;
+        if (TEST_LOGLEVEL_NOTENOUGH(LOG_LEVEL_WARN, (_g_)))
+                return 0;
+        nret = WriteLogBase((_g_), c_filename, c_fileline, LOG_LEVEL_WARN, format, valist);
+        if (nret < 0)
+                return nret;
+        return 0;
 }
 
 #if ( defined _WIN32 ) || ( defined __linux__ ) || ( defined _AIX ) || ( defined __hpux )
@@ -1532,6 +1592,21 @@ int ErrorLog( LOG *g , char *c_filename , long c_fileline , char *format , ... )
 	return 0;
 }
 
+int ErrorLog_ex(LOG *_g_, char *c_filename, long c_fileline, char *format, va_list  valist)
+{
+        int		nret;
+        if ((_g_) == NULL)
+                return LOG_RETURN_ERROR_PARAMETER;
+        if ((_g_)->output == LOG_OUTPUT_FILE && (_g_)->log_pathfilename[0] == '\0')
+                return 0;
+        if (TEST_LOGLEVEL_NOTENOUGH(LOG_LEVEL_ERROR, (_g_)))
+                return 0;
+        nret = WriteLogBase((_g_), c_filename, c_fileline, LOG_LEVEL_ERROR, format, valist);
+        if (nret < 0)
+                return nret;
+        return 0;
+}
+
 #if ( defined _WIN32 ) || ( defined __linux__ ) || ( defined _AIX ) || ( defined __hpux )
 int ErrorLogG( char *c_filename , long c_fileline , char *format , ... )
 {
@@ -1545,6 +1620,21 @@ int FatalLog( LOG *g , char *c_filename , long c_fileline , char *format , ... )
 {
 	WRITELOGBASE( g , LOG_LEVEL_FATAL )
 	return 0;
+}
+
+int FatalLog_ex(LOG *_g_, char *c_filename, long c_fileline, char *format, va_list  valist)
+{
+        int		nret;
+        if ((_g_) == NULL)
+                return LOG_RETURN_ERROR_PARAMETER;
+        if ((_g_)->output == LOG_OUTPUT_FILE && (_g_)->log_pathfilename[0] == '\0')
+                return 0;
+        if (TEST_LOGLEVEL_NOTENOUGH(LOG_LEVEL_FATAL, (_g_)))
+                return 0;
+        nret = WriteLogBase((_g_), c_filename, c_fileline, LOG_LEVEL_FATAL, format, valist);
+        if (nret < 0)
+                return nret;
+        return 0;
 }
 
 #if ( defined _WIN32 ) || ( defined __linux__ ) || ( defined _AIX ) || ( defined __hpux )

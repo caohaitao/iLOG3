@@ -137,11 +137,17 @@ _WINDLL_FUNC int ReOpenLogOutput( LOG *g );
 
 /* 写日志函数 */ /* output log */
 _WINDLL_FUNC int WriteLog( LOG *g , char *c_filename , long c_fileline , int log_level , char *format , ... );
+_WINDLL_FUNC int WriteLog_ex(LOG *g, char *c_filename, long c_fileline, int log_level, char *format, va_list  valist);
 _WINDLL_FUNC int DebugLog( LOG *g , char *c_filename , long c_fileline , char *format , ... );
+_WINDLL_FUNC int DebugLog_ex(LOG *g, char *c_filename, long c_fileline, char *format, va_list  valist);
 _WINDLL_FUNC int InfoLog( LOG *g , char *c_filename , long c_fileline , char *format , ... );
+_WINDLL_FUNC int InfoLog_ex(LOG *g, char *c_filename, long c_fileline, char *format, va_list  valist);
 _WINDLL_FUNC int WarnLog( LOG *g , char *c_filename , long c_fileline , char *format , ... );
+_WINDLL_FUNC int WarnLog_ex(LOG *g, char *c_filename, long c_fileline, char *format, va_list  valist);
 _WINDLL_FUNC int ErrorLog( LOG *g , char *c_filename , long c_fileline , char *format , ... );
+_WINDLL_FUNC int ErrorLog_ex(LOG *g, char *c_filename, long c_fileline, char *format, va_list  valist);
 _WINDLL_FUNC int FatalLog( LOG *g , char *c_filename , long c_fileline , char *format , ... );
+_WINDLL_FUNC int FatalLog_ex(LOG *g, char *c_filename, long c_fileline, char *format, va_list  valist);
 
 /* 写十六进制块日志函数 */ /* output hex log */
 _WINDLL_FUNC int WriteHexLog( LOG *g , char *c_filename , long c_fileline , int log_level , char *buffer , long buflen , char *format , ... );
